@@ -1,4 +1,4 @@
-package com.example.forecastmvvm.ui.weather.future
+package com.example.forecastmvvm.ui.weather.future.detail
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -12,7 +12,8 @@ import com.example.forecastmvvm.R
 class FutureDetailWeatherFragment : Fragment() {
 
     companion object {
-        fun newInstance() = FutureDetailWeatherFragment()
+        fun newInstance() =
+            FutureDetailWeatherFragment()
     }
 
     private lateinit var viewModel: FutureDetailWeatherViewModel

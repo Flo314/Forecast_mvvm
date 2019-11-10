@@ -1,4 +1,4 @@
-package com.example.forecastmvvm.ui.weather.future
+package com.example.forecastmvvm.ui.weather.future.list
 
 import androidx.lifecycle.ViewModel
 
