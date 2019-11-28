@@ -1,5 +1,6 @@
 package com.example.forecastmvvm.data
 
+import com.example.forecastmvvm.data.network.ConnectivityInterceptor
 import com.example.forecastmvvm.data.network.response.CurrentWeatherResponse
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred
@@ -38,9 +39,12 @@ interface ApixuWeatherApiService {
         // operator fun invoke() permet d'appeler directement de faire ApixuWeatherApiService()
         // si il n'y avait que fun create()
         // par exemple il faudrait faire l'appel -> ApixuWeatherApiService.create()
-        operator fun invoke() : ApixuWeatherApiService {
-            // mettre la clé d'api à chaque appel du service
+        operator fun invoke(
+            connectivityInterceptor: ConnectivityInterceptor
+        ) : ApixuWeatherApiService {
+
             // Interceptor -> classe anonyme donc lambda qui passe une chain qui intercepte la requête
+            // et passe la clé d'api à chaque appel du service
             val requestInterceptor = Interceptor { chain ->
 
                 val url : HttpUrl = chain.request()
@@ -60,6 +64,9 @@ interface ApixuWeatherApiService {
             // contient l'interceptor
             val okHttpClient : OkHttpClient = OkHttpClient.Builder()
                 .addInterceptor(requestInterceptor)
+                    // utilisation DI pour éviter un couplage serré en faisant directement
+                    // ConnectivityInterceptorImpl()
+                .addInterceptor(connectivityInterceptor)
                 .build()
 
             return Retrofit.Builder()
