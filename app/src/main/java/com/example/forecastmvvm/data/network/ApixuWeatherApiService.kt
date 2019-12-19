@@ -16,7 +16,7 @@ import retrofit2.http.Query
 const val API_KEY = "key"
 const val BASE_URL = "http://api.weatherstack.com/"
 
-// http://api.weatherstack.com/current?access_key=key&query=Toulouse&Lang=en
+// http://api.weatherstack.com/current?access_key=23d42c7f8d5cd0899288bcc4687673ec&query=Toulouse&Lang=en
 
 /**
  * Interface qui couvre les différentes urls a appeler pour recevoir les données
